@@ -1,0 +1,17 @@
+{
+    "name": "newsgator/app",
+    "autoload": {
+        "psr-4": {
+            "Newsgator\\App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rohit Bhirud",
+            "email": "rbhirud7@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.7"
+    }
+}
