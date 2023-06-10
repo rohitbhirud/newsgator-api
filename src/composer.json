@@ -2,7 +2,7 @@
     "name": "newsgator/app",
     "autoload": {
         "psr-4": {
-            "Newsgator\\App\\": "app/"
+            "Core\\": "Core/"
         }
     },
     "authors": [
