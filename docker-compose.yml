@@ -54,7 +54,9 @@ services:
         volumes:
             - ./src:/var/www/php
         working_dir: /var/www/php
-        command: composer install
+        command:
+            - composer install
+            - composer dump-autoload
         depends_on:
             - php
 
