@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Firebase\JWT\JWT;
 
 class LoginController
 {
@@ -34,7 +35,22 @@ class LoginController
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                return jsonResponse('Login successful');
+
+                // Generate JWT token
+                $config = require base_path('config.php');
+                $key = $config['jwt']['key'];
+
+                $jwtPayload = [
+                    'user_id' => $user['id'],
+                    'email' => $user['email'],
+                    'name' => $user['name']
+                    // Add more data as needed
+                ];
+
+                $jwtSecret = 'your_secret_key'; // Replace with your own secret key
+                $jwtToken = JWT::encode($jwtPayload, $jwtSecret, 'HS256');
+
+                return jsonResponse('Login successful', ['token' => $jwtToken]);
             }
         }
 
