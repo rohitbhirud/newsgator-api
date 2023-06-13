@@ -20,23 +20,23 @@ services:
         volumes:
             - ./src:/var/www/php
         depends_on:
-            mysql:
-                condition: service_healthy
+            - db
+        links:
+            - db
 
-    # MySQL Service
-    mysql:
-        image: mysql/mysql-server:8.0
+    db:
+        image: mysql:8.0
+        cap_add:
+            - SYS_NICE
+        restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_ROOT_HOST: "%"
-            MYSQL_DATABASE: newsgator
+            - MYSQL_DATABASE=newsgator
+            - MYSQL_ROOT_PASSWORD=root
+        ports:
+            - "3306:3306"
         volumes:
-            - ./.docker/mysql/my.cnf:/etc/mysql/my.cnf
-            - mysqldata:/var/lib/mysql
-        healthcheck:
-            test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
-            interval: 5s
-            retries: 10
+            - db:/var/lib/mysql
+            - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
     # PhpMyAdmin Service
     phpmyadmin:
@@ -46,8 +46,7 @@ services:
         environment:
             PMA_HOST: mysql
         depends_on:
-            mysql:
-                condition: service_healthy
+            - db
 
     # Composer Service
     composer:
@@ -61,4 +60,5 @@ services:
 
 # Volumes
 volumes:
-    mysqldata:
+    db:
+        driver: local

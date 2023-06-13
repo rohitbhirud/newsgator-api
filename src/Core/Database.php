@@ -24,7 +24,7 @@ class Database
             // [optional]
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
-            'port' => 3306,
+            'port' => $port,
 
             // [optional] The table prefix. All table names will be prefixed as PREFIX_table.
             'prefix' => 'newsgator_',

@@ -2,12 +2,11 @@
 
 return [
     'database' => [
-        'host' => 'localhost',
+        'host' => '172.19.0.2',
         'port' => 3306,
-        'dbname' => 'newsgator',
+        'database' => 'newsgator',
         'username' => 'root',
-        'password' => '',
-        'charset' => 'utf8mb4'
+        'password' => 'root'
     ],
 
     //

@@ -1,3 +1,11 @@
 <?php
 
-jsonResponse(['data' => 'Test response']);
+class ArticlesController
+{
+    function index()
+    {
+        return jsonResponse('Test response');
+    }
+}
+
+return new ArticlesController();

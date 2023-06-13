@@ -6,26 +6,27 @@ class Router
 {
     protected $routes = [];
 
-    public function add($method, $uri, $controller)
+    public function add($method, $uri, $controller, $function = 'index')
     {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
             'method' => $method,
+            'function' => $function,
             'middleware' => null
         ];
 
         return $this;
     }
 
-    public function get($uri, $controller)
+    public function get($uri, $controller, $function = 'index')
     {
-        return $this->add('GET', $uri, $controller);
+        return $this->add('GET', $uri, $controller, $function);
     }
 
-    public function post($uri, $controller)
+    public function post($uri, $controller, $function)
     {
-        return $this->add('POST', $uri, $controller);
+        return $this->add('POST', $uri, $controller, $function);
     }
 
     public function delete($uri, $controller)
@@ -53,8 +54,26 @@ class Router
     public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
+            // if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+            //     return require base_path('Http/controllers/' . $route['controller']);
+            // }
+            /////
+
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                return require base_path('Http/controllers/' . $route['controller']);
+                $controllerFilePath = base_path('Http/controllers/' . $route['controller']);
+                if (file_exists($controllerFilePath)) {
+                    $controllerInstance = require $controllerFilePath;
+
+                    $functionName = $route['function'];
+
+                    if (method_exists($controllerInstance, $functionName)) {
+                        return $controllerInstance->$functionName();
+                    } else {
+                        $this->abort(500);
+                    }
+                } else {
+                    $this->abort(500);
+                }
             }
         }
 
