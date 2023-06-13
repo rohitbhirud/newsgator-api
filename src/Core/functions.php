@@ -18,16 +18,25 @@ function abort($code = 404)
     return jsonResponse('Not Found');
 }
 
-function jsonResponse($message, $data = null)
+
+function jsonResponse($message, $data = null, $errors = null, $statusCode = 200)
 {
 
     $response = [
         'message' => $message,
-        'data' => $data
+        'data' => $data,
+        'error' => ($errors !== null),
     ];
+
+    if ($errors !== null) {
+        $response['errors'] = $errors;
+    }
 
     // Set the response content type to JSON
     header("Content-Type: application/json");
+
+    // Set the response status code
+    http_response_code($statusCode);
 
     // Convert the response data to JSON
     $jsonResponse = json_encode($response);
