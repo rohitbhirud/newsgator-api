@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Middleware\Middleware;
+
 class Router
 {
     protected $routes = [];
@@ -51,15 +53,20 @@ class Router
         return jsonResponse('Route Not Found');
     }
 
+    public function only($key)
+    {
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+
+        return $this;
+    }
+
     public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
-            // if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-            //     return require base_path('Http/controllers/' . $route['controller']);
-            // }
-            /////
-
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+
+                Middleware::resolve($route['middleware']);
+
                 $controllerFilePath = base_path('Http/controllers/' . $route['controller']);
                 if (file_exists($controllerFilePath)) {
                     $controllerInstance = require $controllerFilePath;

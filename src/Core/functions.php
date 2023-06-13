@@ -1,7 +1,5 @@
 <?php
 
-use Core\Response;
-
 function dd($value)
 {
     echo "<pre>";
@@ -48,4 +46,10 @@ function jsonResponse($message, $data = null, $errors = null, $statusCode = 200)
 function base_path($path)
 {
     return BASE_PATH . $path;
+}
+
+
+function old($key, $default = '')
+{
+    return Core\Session::get('old')[$key] ?? $default;
 }
