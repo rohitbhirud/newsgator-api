@@ -2,7 +2,8 @@
     "name": "newsgator/app",
     "autoload": {
         "psr-4": {
-            "Core\\": "Core/"
+            "Core\\": "Core/",
+            "Services\\": "Services/"
         }
     },
     "authors": [
@@ -15,6 +16,7 @@
         "guzzlehttp/guzzle": "^7.7",
         "catfan/medoo": "^2.1",
         "robmorgan/phinx": "^0.13.4",
-        "firebase/php-jwt": "^6.5"
+        "firebase/php-jwt": "^6.5",
+        "jcobhams/newsapi": "^1.0"
     }
 }
