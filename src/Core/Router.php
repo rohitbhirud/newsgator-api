@@ -48,7 +48,7 @@ class Router
     {
         http_response_code($code);
 
-        return jsonResponse(['message' => 'Not Found']);
+        return jsonResponse('Route Not Found');
     }
 
     public function route($uri, $method)

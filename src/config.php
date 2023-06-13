@@ -8,6 +8,9 @@ return [
         'username' => 'root',
         'password' => 'root'
     ],
+    'jwt' => [
+        'key' => 'asdsadasfwetwggdsgfd'
+    ]
 
     //
 ];
