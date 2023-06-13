@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Phinx\Migration\AbstractMigration;
 use Phinx\Util\Literal;
 
-final class UsersMigration extends AbstractMigration
+final class PreferencesMigration extends AbstractMigration
 {
     /**
      * Change Method.
@@ -20,14 +20,17 @@ final class UsersMigration extends AbstractMigration
     public function change(): void
     {
         // create the table
-        $table = $this->table('newsgator_users');
+        $table = $this->table('newsgator_preferences');
+
         $table->addColumn('created', 'datetime', [
             'timezone' => true,
             'default' => Literal::from('now()')
         ])
-            ->addColumn('email', 'string')
-            ->addColumn('name', 'string')
-            ->addColumn('password', 'string')
+            ->addColumn('sources', 'string', ['null' => true])
+            ->addColumn('categories', 'string', ['null' => true])
+            ->addColumn('authors', 'string', ['null' => true])
+            ->addColumn('user_id', 'integer', ['null' => true, 'signed' => false])
+            ->addForeignKey('user_id', 'newsgator_users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->save();
     }
 }

@@ -8,6 +8,7 @@ $router->get('/api/articles/countries', 'articles/index.php', 'getCountries');
 
 // Auth
 $router->post('/api/auth/login', 'auth/login.php', 'login')->only('guest');
+$router->post('/api/auth/logout', 'auth/login.php', 'logout')->only('auth');
 $router->post('/api/auth/register', 'auth/register.php', 'register')->only('guest');
 
 // Get loggedIn user preferences
