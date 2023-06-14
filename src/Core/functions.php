@@ -33,6 +33,12 @@ function jsonResponse($message, $data = null, $errors = null, $statusCode = 200)
     // Set the response content type to JSON
     header("Content-Type: application/json");
 
+    header("Access-Control-Allow-Origin: *");
+
+    header('Access-Control-Allow-Methods: GET, POST');
+
+    header("Access-Control-Allow-Headers: X-Requested-With");
+
     // Set the response status code
     http_response_code($statusCode);
 

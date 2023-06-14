@@ -9,6 +9,7 @@ class LoginController
 {
     function login()
     {
+
         // validate request
         // if user exists and password is correct
         // return jwt token
@@ -50,7 +51,7 @@ class LoginController
 
                 $jwtToken = JWT::encode($jwtPayload, $jwtSecret, 'HS256');
 
-                return jsonResponse('Login successful', ['token' => $jwtToken]);
+                return jsonResponse('Login successful', ['token' => $jwtToken, 'email' => $user['email'], 'name' => $user['name']]);
             }
         }
 
