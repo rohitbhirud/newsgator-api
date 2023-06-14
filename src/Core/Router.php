@@ -50,7 +50,8 @@ class Router
     {
         http_response_code($code);
 
-        return jsonResponse('Route Not Found');
+        jsonResponse('Route Not Found');
+        die();
     }
 
     public function only($key)

@@ -13,7 +13,8 @@ function abort($code = 404)
 {
     http_response_code($code);
 
-    return jsonResponse('Not Found');
+    jsonResponse('Not Found');
+    die();
 }
 
 

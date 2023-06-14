@@ -24,10 +24,12 @@ class PreferencesController
         );
 
         if (!$pref) {
-            return jsonResponse('No preferences found', null, null, 404);
+            jsonResponse('No preferences found', null, null, 404);
+            die();
         }
 
-        return jsonResponse('success', $pref);
+        jsonResponse('success', $pref);
+        die();
     }
 
     public function savePreferences()
