@@ -31,7 +31,7 @@ services:
         restart: always
         environment:
             - MYSQL_DATABASE=newsgator
-            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_ROOT_PASSWORD=KJSparrow007
         ports:
             - "3306:3306"
         volumes:
