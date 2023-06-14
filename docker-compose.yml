@@ -55,8 +55,9 @@ services:
             - ./src:/var/www/php
         working_dir: /var/www/php
         command:
-            - composer install
-            - composer dump-autoload
+            - /usr/bin/composer install
+            - /usr/bin/composer dump-autoload
+            - /vendor/bin/phinx migrate -e production
         depends_on:
             - php
 
