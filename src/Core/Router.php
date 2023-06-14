@@ -68,7 +68,7 @@ class Router
 
                 Middleware::resolve($route['middleware']);
 
-                $controllerFilePath = base_path('Http/controllers/' . $route['controller']);
+                $controllerFilePath = base_path('Http/Controllers/' . $route['controller']);
                 if (file_exists($controllerFilePath)) {
                     $controllerInstance = require $controllerFilePath;
 
