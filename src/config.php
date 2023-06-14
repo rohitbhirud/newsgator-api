@@ -2,7 +2,7 @@
 
 return [
     'database' => [
-        'host' => '172.19.0.2',
+        'host' => '172.26.0.2',
         'port' => 3306,
         'database' => 'newsgator',
         'username' => 'root',
