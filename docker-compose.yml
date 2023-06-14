@@ -15,7 +15,7 @@ services:
 
     # PHP Service
     php:
-        build: ./.docker/php
+        build: ./
         working_dir: /var/www/php
         volumes:
             - ./src:/var/www/php
@@ -31,35 +31,12 @@ services:
         restart: always
         environment:
             - MYSQL_DATABASE=newsgator
-            - MYSQL_ROOT_PASSWORD=KJSparrow007
+            - MYSQL_ROOT_PASSWORD=root
         ports:
             - "3306:3306"
         volumes:
             - db:/var/lib/mysql
             - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-
-    # PhpMyAdmin Service
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin:5
-        ports:
-            - 8080:80
-        environment:
-            PMA_HOST: mysql
-        depends_on:
-            - db
-
-    # Composer Service
-    composer:
-        image: composer:latest
-        volumes:
-            - ./src:/var/www/php
-        working_dir: /var/www/php
-        command:
-            - /usr/bin/composer install
-            - /usr/bin/composer dump-autoload
-            - /vendor/bin/phinx migrate -e production
-        depends_on:
-            - php
 
 # Volumes
 volumes:

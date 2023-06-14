@@ -14,7 +14,7 @@ return
                 'host' => '127.0.0.1',
                 'name' => 'newsgator',
                 'user' => 'root',
-                'pass' => 'KJSparrow007',
+                'pass' => 'root',
                 'port' => '3306',
                 'charset' => 'utf8',
             ],
