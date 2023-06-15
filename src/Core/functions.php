@@ -48,6 +48,8 @@ function jsonResponse($message, $data = null, $errors = null, $statusCode = 200)
 
     // Return the JSON response
     echo $jsonResponse;
+
+    die();
 }
 
 function base_path($path)

@@ -11,7 +11,7 @@ return
             'default_environment' => 'development',
             'production' => [
                 'adapter' => 'mysql',
-                'host' => '172.26.0.2',
+                'host' => 'db',
                 'name' => 'newsgator',
                 'user' => 'root',
                 'pass' => 'root',
@@ -20,7 +20,7 @@ return
             ],
             'development' => [
                 'adapter' => 'mysql',
-                'host' => '127.0.0.1',
+                'host' => 'db',
                 'name' => 'newsgator',
                 'user' => 'root',
                 'pass' => 'root',
@@ -29,7 +29,7 @@ return
             ],
             'testing' => [
                 'adapter' => 'mysql',
-                'host' => '127.0.0.1',
+                'host' => 'db',
                 'name' => 'testing_db',
                 'user' => 'root',
                 'pass' => '',

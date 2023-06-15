@@ -53,6 +53,7 @@ class RegisterController
             ['email' => $email]
         );
 
+
         if ($user) {
             // If the user exists, return a JSON response with a message anduser data
             return jsonResponse('User already exists', $user, null);
