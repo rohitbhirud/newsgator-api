@@ -31,7 +31,7 @@ class ArticlesController
         try {
             $articles = $this->newsApi->getTopHeadlines($params);
         } catch (\Throwable $th) {
-            return jsonResponse('Error occured', null, $th);
+            return jsonResponse('Error occured', null, json_encode($th));
         }
 
         return jsonResponse('success', $articles);
@@ -45,7 +45,7 @@ class ArticlesController
         try {
             $cats = $this->newsApi->getCategories();
         } catch (\Throwable $th) {
-            return jsonResponse('Error occured', null, $th);
+            return jsonResponse('Error occured', null, json_encode($th));
         }
 
         return jsonResponse('success', $cats);
@@ -59,7 +59,7 @@ class ArticlesController
         try {
             $sources = $this->newsApi->getSources();
         } catch (\Throwable $th) {
-            return jsonResponse('Error occured', null, $th);
+            return jsonResponse('Error occured', null, json_encode($th));
         }
 
         return jsonResponse('success', $sources);
@@ -73,7 +73,7 @@ class ArticlesController
         try {
             $countries = $this->newsApi->getCountries();
         } catch (\Throwable $th) {
-            return jsonResponse('Error occured', null, $th);
+            return jsonResponse('Error occured', null, json_encode($th));
         }
 
         return jsonResponse('success', $countries);
